@@ -93,7 +93,7 @@
 
 			csi_dphy_input1: endpoint@1 {
 				reg = <1>;
-				remote-endpoint = <&sc4336_out>;
+				remote-endpoint = <&gc4653_out>;
 				data-lanes = <1 2>;
 			};
 
@@ -144,21 +144,22 @@
 		};
 	};
 
-	sc4336: sc4336@30 {
-		compatible = "smartsens,sc4336";
+	gc4653: gc4653@29 {
+        compatible = "galaxycore,gc4653";
 		status = "okay";
-		reg = <0x30>;
+		reg = <0x29>;
 		clocks = <&cru MCLK_REF_MIPI0>;
 		clock-names = "xvclk";
 		pwdn-gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&mipi_refclk_out0>;
+
 		rockchip,camera-module-index = <0>;
 		rockchip,camera-module-facing = "back";
-		rockchip,camera-module-name = "OT01";
-		rockchip,camera-module-lens-name = "40IRC_F16";
+		rockchip,camera-module-name = "YT10120";
+		rockchip,camera-module-lens-name = "30IRC-4M-F20";
 		port {
-			sc4336_out: endpoint {
+			gc4653_out: endpoint {
 				remote-endpoint = <&csi_dphy_input1>;
 				data-lanes = <1 2>;
 			};
