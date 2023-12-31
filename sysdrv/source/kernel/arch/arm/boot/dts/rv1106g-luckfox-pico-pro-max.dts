@@ -12,9 +12,24 @@
 / {
 	model = "Luckfox Pico Max";
 	compatible = "rockchip,rv1103g-38x38-ipc-v10", "rockchip,rv1106";
+	wireless_wlan: wireless-wlan {
+		compatible = "wlan-platdata";
+        wifi_chip_type = "AIC8800D0";
+		pinctrl-names = "default";
+		pinctrl-0 = <&wifi_host_wake_irq>;
+        WIFI,poweren_gpio = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+		WIFI,host_wake_irq = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
 };
 
-
+&pinctrl {
+	wireless-wlan {
+		wifi_host_wake_irq: wifi-host-wake-irq {
+			rockchip,pins = <1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+};
 
 /**********FLASH**********/
 &sfc {
@@ -63,9 +78,22 @@
 };
 
 /**********USB**********/
-&usbdrd_dwc3 {
+&u2phy {
 	status = "okay";
-	dr_mode = "peripheral";
+};
+
+&u2phy_otg {
+	status = "okay";
+};
+
+&usbdrd {
+	status = "okay";
+};
+
+&usbdrd_dwc3 {
+    extcon = <&u2phy>;
+	status = "okay";
+    /* dr_mode = "host"; */
 };
 
 /**********I2C**********/
