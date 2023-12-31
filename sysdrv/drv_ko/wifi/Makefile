@@ -45,6 +45,10 @@ ifneq ($(findstring $(RK_ENABLE_WIFI_CHIP),"SSV6X5X"),)
 	@make -C ssv6x5x/
 endif
 
+ifneq ($(findstring $(RK_ENABLE_WIFI_CHIP),"AIC8800DW_USB"),)
+	@make -C aic8800/
+endif
+
 build-sdio:
 ifneq ($(findstring $(RK_ENABLE_WIFI_CHIP),"RTL8189FS"),)
 	@make -C rtl8189fs/

@@ -67,5 +67,12 @@ if [ $? -eq 0 ];then
 	insmod atbm603x_.ko
 fi
 
+echo host > /sys/devices/platform/ff3e0000.usb2-phy/otg_mode
+cat /sys/bus/usb/devices/*/uevent | grep "1d6b\/3\/510"
+if [ $? -eq 0 ];then
+	insmod cfg80211.ko
+	insmod /oem/usr/ko/aic_load_fw.ko aic_fw_path=/oem/usr/ko/aic8800D80
+	insmod /oem/usr/ko/aic8800_fdrv.ko
+fi
 #start wifi app
 rkwifi_server start &

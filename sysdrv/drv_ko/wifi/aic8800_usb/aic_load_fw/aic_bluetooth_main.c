@@ -20,7 +20,7 @@ int n_para = 1;
 int ble_scan_wakeup_reboot_time = 1000;
 int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
 
-module_param(aicwf_dbg_level, int, 0660);
+// module_param(aicwf_dbg_level, int, 0660);
 module_param(ble_scan_wakeup_reboot_time, int, 0660);
 module_param(testmode, int, 0660);
 module_param(adap_test, int, 0660);

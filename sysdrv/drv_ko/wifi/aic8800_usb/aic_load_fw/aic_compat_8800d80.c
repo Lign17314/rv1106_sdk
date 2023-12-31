@@ -2052,8 +2052,9 @@ int system_config_8800d80(struct aic_usb_dev *usb_dev){
 }
 
 int aicfw_download_fw_8800d80(struct aic_usb_dev *usb_dev){
+    printk("%s %d %d\r\n",__func__,testmode,chip_id);
     if(testmode == FW_NORMAL_MODE){
-		if (chip_id == CHIP_REV_U02){
+		if (chip_id == CHIP_REV_U03){
 			if(rwnx_plat_bin_fw_upload_android(usb_dev, FW_RAM_ADID_BASE_ADDR_8800D80_U02, FW_ADID_BASE_NAME_8800D80_U02)) {
 				return -1;
 			}

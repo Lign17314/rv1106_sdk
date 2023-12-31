@@ -7,18 +7,18 @@ obj-$(CONFIG_AIC8800_WLAN_SUPPORT) += aic8800_fdrv/
 
 
 # Platform support list
-CONFIG_PLATFORM_ROCKCHIP ?= y
+CONFIG_PLATFORM_ROCKCHIP ?= n
 CONFIG_PLATFORM_ALLWINNER ?= n
 CONFIG_PLATFORM_AMLOGIC ?= n
-CONFIG_PLATFORM_UBUNTU ?= n
+CONFIG_PLATFORM_UBUNTU ?= y
 
 ifeq ($(CONFIG_PLATFORM_ROCKCHIP), y)
 #KDIR := /home/yaya/E/Rockchip/3229/Android7/RK3229_ANDROID7.1_v1.01_20170914/rk3229_Android7.1_v1.01_xml0914/kernel
 #ARCH ?= arm
 #CROSS_COMPILE ?= /home/yaya/E/Rockchip/3229/Android7/RK3229_ANDROID7.1_v1.01_20170914/rk3229_Android7.1_v1.01_xml0914/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
-#KDIR  := /home/yaya/E/Rockchip/3229/Android9/rk3229_android9.0_box/kernel
+KDIR  := /home/yaya/E/Rockchip/3229/Android9/rk3229_android9.0_box/kernel
 ARCH ?= arm
-#CROSS_COMPILE ?= /home/yaya/E/Rockchip/3229/Android9/rk3229_android9.0_box/prebuilts/gcc/linux-x86/arm/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+CROSS_COMPILE ?= /home/yaya/E/Rockchip/3229/Android9/rk3229_android9.0_box/prebuilts/gcc/linux-x86/arm/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 #KDIR  := /home/yaya/E/Rockchip/3399/rk3399-android-10/kernel
 #ARCH ?= arm64
 #CROSS_COMPILE ?= /home/yaya/E/Rockchip/3399/rk3399-android-10/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
@@ -52,14 +52,12 @@ endif
 
 all: modules
 modules:
-	#make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules
 	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNEL_DIR) M=$(shell pwd) modules -j12
 	arm-rockchip830-linux-uclibcgnueabihf-strip --strip-debug $(shell pwd)/aic8800_fdrv/aic8800_fdrv.ko
 	arm-rockchip830-linux-uclibcgnueabihf-strip --strip-debug $(shell pwd)/aic_load_fw/aic_load_fw.ko
 	cp $(shell pwd)/aic8800_fdrv/aic8800_fdrv.ko $(M_OUT_DIR)
 	cp $(shell pwd)/aic_load_fw/aic_load_fw.ko $(M_OUT_DIR)
-	cp $(shell pwd)/aic8800DC $(M_OUT_DIR) -r
-	cp $(shell pwd)/fw/aic8800D80 $(M_OUT_DIR) -r
+	cp $(shell pwd)/aic8800D80 $(M_OUT_DIR) -r
 
 install:
 	mkdir -p $(MODDESTDIR)
