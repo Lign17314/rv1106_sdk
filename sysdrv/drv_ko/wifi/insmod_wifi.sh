@@ -67,6 +67,9 @@ if [ $? -eq 0 ];then
 	insmod atbm603x_.ko
 fi
 
+echo 4 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio4/direction
+echo 1 > /sys/class/gpio/gpio4/value
 echo host > /sys/devices/platform/ff3e0000.usb2-phy/otg_mode
 cat /sys/bus/usb/devices/*/uevent | grep "1d6b\/3\/510"
 if [ $? -eq 0 ];then

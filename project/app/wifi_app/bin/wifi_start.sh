@@ -34,3 +34,9 @@ cat /sys/bus/usb/devices/*/uevent | grep "007A:6011"
 if [ $? -eq 0 ];then
 	wpa_supplicant -B -D nl80211 -i wlan0 -c $CONF
 fi
+
+# AIC8800
+cat /sys/bus/usb/devices/*/uevent | grep "1d6b\/3\/510"
+if [ $? -eq 0 ];then
+	wpa_supplicant -B -D nl80211 -i wlan0 -c $CONF
+fi
