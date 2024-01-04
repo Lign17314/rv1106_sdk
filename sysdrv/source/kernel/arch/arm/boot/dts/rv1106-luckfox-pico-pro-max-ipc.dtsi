@@ -87,7 +87,7 @@
 
 			csi_dphy_input0: endpoint@0 {
 				reg = <0>;
-				remote-endpoint = <&sc3336_out>;
+				remote-endpoint = <&gc2093_out>;
 				data-lanes = <1 2>;
 			};
 
@@ -123,21 +123,21 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c4m2_xfer>;
 
-	sc3336: sc3336@30 {
-		compatible = "smartsens,sc3336";
+	gc2093: gc2093@37 {
+        compatible = "galaxycore,gc2093";
 		status = "okay";
-		reg = <0x30>;
+		reg = <0x37>;
 		clocks = <&cru MCLK_REF_MIPI0>;
 		clock-names = "xvclk";
 		pwdn-gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&mipi_refclk_out0>;
-		rockchip,camera-module-index = <0>;
-		rockchip,camera-module-facing = "back";
-		rockchip,camera-module-name = "CMK-OT2119-PC1";
-		rockchip,camera-module-lens-name = "30IRC-F16";
+        rockchip,camera-module-index = <0>;
+        rockchip,camera-module-facing = "back";
+        rockchip,camera-module-name = "SIDA209300461";
+        rockchip,camera-module-lens-name = "60IRC_F20";
 		port {
-			sc3336_out: endpoint {
+			gc2093_out: endpoint {
 				remote-endpoint = <&csi_dphy_input0>;
 				data-lanes = <1 2>;
 			};
