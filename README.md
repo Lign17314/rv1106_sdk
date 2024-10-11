@@ -1,5 +1,8 @@
 使用luckfox rv1106的sdk开发SoloLinker开发板，现在仅支持了build luch中的8选项，使用spi nand的版本，摄像头支持gc2093和gc4653
-
+# 编译方式
+./build.sh lunch
+输入8
+./build.sh
 # Wifi连接方式
 1. 插上wifi短接线
 2. 等待系统启动到登录打印，此时输入账号名 root 回车后输入密码 luckfox 回车即可进入系统
